@@ -1,4 +1,7 @@
 #!/bin/bash
+#### ---- stopping rrwatchdoge after startup ---- ####
+sleep 30
+service rrwatchdoge stop
 
 #### ---- create new logging folder from tmpfs and link watchdog.log to /dev/null ---- ####
 mount -t tmpfs -o size=5m ext4 /mnt/data/rockrobo/rrlog
@@ -22,3 +25,6 @@ if [ ! -f "/dev/shm/check" ]; then
         ln -s /dev/null /dev/shm/SLAM_normal.log
         echo . > /dev/shm/check
 fi
+
+#### ---- finally start rrwatchdoge ---- ####
+service rrwatchdoge start
