@@ -8,7 +8,7 @@ SHELL=/bin/sh
 PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 
 # m h dom mon dow user  command
-@reboot   root    /root/check_all
+# @reboot   root    /root/check_all
 0 2     * * *   root    service rrwatchdoge stop
 15 2    * * *   root    /root/check_all
 0 4     * * *   root    service rrwatchdoge start
