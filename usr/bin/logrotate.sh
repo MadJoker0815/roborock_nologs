@@ -66,5 +66,6 @@ do
 
 #### ---- remove leftover logs in tmpfs /dev/shm and set logrotate to not as aggressive
         rm /dev/shm/*.old > /dev/null
+        rm /mnt/data/rockrobo/rrlog/*REL -R > /dev/null
         sleep 60
 done
