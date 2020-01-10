@@ -17,9 +17,11 @@ mount /dev/mmcblk0p1 /mnt/data
 mount /dev/mmcblk0p11 /mnt/reserve
 mount -o ro /dev/mmcblk0p6 /mnt/default
 
-#### ---- create new logging folder from tmpfs and link watchdog.log to /dev/null ---- ####
+#### ---- create new logging folder from tmpfs and link logs to /dev/null ---- ####
 mount -t tmpfs -o size=5m ext4 /mnt/data/rockrobo/rrlog
 ln -s /dev/null /mnt/data/rockrobo/rrlog/watchdog.log
+ln -s /dev/null /mnt/data/rockrobo/rrlog/rrlog.log
+ln -s /dev/null /mnt/data/rockrobo/rrlog/miio.log
 
 #### ---- remove existing .log and .old files ---- ####
 rm /dev/shm/*.log
