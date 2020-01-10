@@ -9,4 +9,4 @@ The service Cron needs to be restarted after modifying "/etc/crontab". (use "ser
 
 Files in /root/ have to be executeable. (use "chmod +x /root/check_all;/root/check_reboot")
 
-Also you should stop rrwatchdoge before editing the ProcessList.conf or ProcessListMT.conf. (use "service rrwatchdoge stop". To tart it after modification use "service rrwatchdoge start")
+Also you should stop rrwatchdoge before editing the ProcessList.conf or ProcessListMT.conf. (use "service rrwatchdoge stop". To start it after modification use "service rrwatchdoge start")
