@@ -13,10 +13,10 @@ PATH=/usr/local/sbin:/usr/local/bin:/sbin:/bin:/usr/sbin:/usr/bin
 47 6    * * 7   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.weekly )
 52 6    1 * *   root    test -x /usr/sbin/anacron || ( cd / && run-parts --report /etc/cron.monthly )
 
-####---- create symlinks and check, also deactivate services from 2am to 4am
+####---- create symlinks and check once a week, also deactivate services from 2am to 4am
 @reboot         root    /root/check_reboot
 0 2     * * *   root    service rrwatchdoge stop
-15 2    * * *   root    /root/check_all
+15 2    * * 1   root    /root/check_all
 0 4     * * *   root    service rrwatchdoge start
 
 #### ---- found in valetudo prebuilt FW
