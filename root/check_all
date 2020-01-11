@@ -24,7 +24,6 @@ ln -s /dev/null /mnt/data/rockrobo/rrlog/rrlog.log
 ln -s /dev/null /mnt/data/rockrobo/rrlog/miio.log
 
 #### ---- remove existing .log and .old files ---- ####
-rm /dev/shm/*.log
 rm /dev/shm/*.old
 
 #### ---- check if reboot/remount has occured to reset the symlinks for log files ---- ####
