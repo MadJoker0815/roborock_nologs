@@ -28,6 +28,7 @@ rm /dev/shm/*.old
 
 #### ---- check if reboot/remount has occured to reset the symlinks for log files ---- ####
 if [ ! -f "/dev/shm/check" ]; then
+        rm /dev/shm/*.log
         ln -s /dev/null /dev/shm/APP_PROXY_normal.log
         ln -s /dev/null /dev/shm/NAV_TRAP_normal.log
         ln -s /dev/null /dev/shm/NAV_binId5.log
