@@ -7,7 +7,7 @@ The reason to include and modify these files is to not have nightly reboots, any
 
 The service Cron needs to be restarted after modifying "/etc/crontab". (use "service cron restart")
 
-The restart times must depend on the system time. So if your robot is running at Shanghai time, it is more likely that it will restart at a different time. Check the output of "Uptime" and calculate back to restart. You have to place the timers around them. So if you restart at 2 a.m., the timer should be set at least 15 minutes before and 15 minutes after the restart. That is, 1:45 a.m. and 2:15 a.m.
+The times must depend on the system time. So if your robot is running at Shanghai time, it is more likely that it will reboot at a different time. Check the output of "uptime" and calculate back to the time of reboot. You have to place the timers around them. So if your reboot happens at 2am, the timer should be set at least 15 minutes before and 15 minutes after the restart. That is, 1:45am and 2:15am not the configured 2:00am to 4:00am.
 
 Files in /root/ have to be executeable. (use "chmod +x /root/check_all;/root/check_reboot")
 
