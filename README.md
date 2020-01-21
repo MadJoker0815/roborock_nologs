@@ -12,3 +12,7 @@ The times must depend on the system time. So if your robot is running at Shangha
 Files in /root/ have to be executeable. (use "chmod +x /root/check_all;/root/check_reboot")
 
 Also you should stop rrwatchdoge before editing the ProcessList.conf or ProcessListMT.conf. (use "service rrwatchdoge stop". To start it after modification use "service rrwatchdoge start")
+
+
+For easy installation I added the "install.sh" script. This will make the modifications if needed.
+Remember to check your regular reboot time and adjust the times in /etc/crontab after the executuion.
