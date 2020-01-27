@@ -17,10 +17,10 @@ mount /dev/mmcblk0p1 /mnt/data
 mount /dev/mmcblk0p11 /mnt/reserve
 mount -o ro /dev/mmcblk0p6 /mnt/default
 fstrim -v /
-fstrim -v /dev/mmcblk0p10
-fstrim -v /dev/mmcblk0p1
-fstrim -v /dev/mmcblk0p11
-fstrim -v /dev/mmcblk0p6
+fstrim -v /mnt/updbuf
+fstrim -v /mnt/data
+fstrim -v /mnt/reserve
+fstrim -v /mnt/default
 
 #### ---- create new logging folder from tmpfs and link logs to /dev/null ---- ####
 mountpoint -q /mnt/data/rockrobo/rrlog || mount -t tmpfs -o size=5m ext4 /mnt/data/rockrobo/rrlog
