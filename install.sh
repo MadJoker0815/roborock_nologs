@@ -27,10 +27,10 @@ mount /dev/mmcblk0p1 /mnt/data
 mount /dev/mmcblk0p11 /mnt/reserve
 mount -o ro /dev/mmcblk0p6 /mnt/default
 fstrim -v /
-fstrim -v /dev/mmcblk0p10
-fstrim -v /dev/mmcblk0p1
-fstrim -v /dev/mmcblk0p11
-fstrim -v /dev/mmcblk0p6
+fstrim -v /mnt/updbuf
+fstrim -v /mnt/data
+fstrim -v /mnt/reserve
+fstrim -v /mnt/default
 
 #### ---- create new logging folder from tmpfs and link logs to /dev/null ---- ####
 mount -t tmpfs -o size=5m ext4 /mnt/data/rockrobo/rrlog
@@ -121,15 +121,16 @@ sleep 1
 
 chmod +x /root/check_all
 chmod +x /root/check_reboot
+chmod +x /opt/rockrobo/rrlog/logclean.sh
 
 grep -qxF '#### ---- create symlinks and check once a week, also deactivate services from 2am to 4am' /etc/crontab || echo '#### ---- create symlinks and check once a week, also deactivate services from 2am to 4am' >> /etc/crontab
 grep -qxF '#### ---- edit this time to be around your system reboot time. (it might run in a differen timezone than your valetudo timers)' /etc/crontab || echo '#### ---- edit this time to be around your system reboot time. (it might run in a differen timezone than your valetudo timers)' >> /etc/crontab
-grep -qxF '@reboot         root    //root//check_reboot' /etc/crontab || echo '@reboot         root    //root//check_reboot' >> /etc/crontab
+grep -qxF '@reboot         root    /root/check_reboot' /etc/crontab || echo '@reboot         root    /root/check_reboot' >> /etc/crontab
 grep -qxF '0 2     * * *   root    service rrwatchdoge stop' /etc/crontab || echo '0 2     * * *   root    service rrwatchdoge stop' >> /etc/crontab
-grep -qxF '15 2    * * 1   root    //root//check_all' /etc/crontab || echo '15 2    * * 1   root    //root//check_all' >> /etc/crontab
+grep -qxF '15 2    * * 1   root    /root/check_all' /etc/crontab || echo '15 2    * * 1   root    /root/check_all' >> /etc/crontab
 grep -qxF '0 4     * * *   root    service rrwatchdoge start' /etc/crontab || echo '0 4     * * *   root    service rrwatchdoge start' >> /etc/crontab
 grep -qxF '#### ---- found in valetudo prebuilt FW from rand256' /etc/crontab || echo '#### ---- found in valetudo prebuilt FW from rand256' >> /etc/crontab
-grep -qxF '*/5 * * * * root //opt//rockrobo//rrlog//logclean.sh //mnt//data//rockrobo//rrlog >> //mnt//data//rockrobo//rrlog//lclean.log 2>&1' /etc/crontab || echo '*/5 * * * * root //opt//rockrobo//rrlog//logclean.sh //mnt//data//rockrobo//rrlog >> //mnt//data//rockrobo//rrlog//lclean.log 2>&1' >> /etc/crontab
+grep -qxF '*/5 * * * * root /opt/rockrobo/rrlog/logclean.sh /mnt/data/rockrobo/rrlog >> /mnt/data/rockrobo/rrlog/lclean.log 2>&1' /etc/crontab || echo '*/5 * * * * root /opt/rockrobo/rrlog/logclean.sh /mnt/data/rockrobo/rrlog >> /mnt/data/rockrobo/rrlog/lclean.log 2>&1' >> /etc/crontab
 
 service cron restart
 
@@ -137,12 +138,12 @@ service cron restart
 echo 'Modify logrotate.sh to be not as aggressive and delete old log files.'
 
 cp /usr/bin/logrotate.sh /usr/bin/logrotate.sh.old
-sed -i '/sleep 5/ i /#### ---- remove leftover logs in tmpfs //dev//shm and set logrotate to not as aggressive/' /usr/bin/logrotate.sh 
-sed -i '/sleep 5/ i /rm //dev//shm//*.old > //dev//null/' /usr/bin/logrotate.sh
-sed -i '/sleep 5/ i /rm //mnt//data//rockrobo//rrlog//*REL -R > //dev//null/' /usr/bin/logrotate.sh
-sed -i '/sleep 5/ i /rm //mnt//data//rockrobo//rrlog//*REL -R > //dev//null/' /usr/bin/logrotate.sh
-sed -i '/sleep 5/ i /rm //mnt//data//rockrobo//rrlog//*.gz > //dev//null/' /usr/bin/logrotate.sh
-sed -i 's/sleep 5/sleep 60/gI' /usr/bin/logrotate.sh
+sed -i 's$sleep 5$ i $#### ---- remove leftover logs in tmpfs //dev//shm and set logrotate to not as aggressive$' /usr/bin/logrotate.sh 
+sed -i 's$sleep 5$ i $rm /dev/shm/*.old > /dev/null$' /usr/bin/logrotate.sh
+sed -i 's$sleep 5$ i $rm /mnt/data/rockrobo/rrlog/*REL -R > /dev/null$' /usr/bin/logrotate.sh
+sed -i 's$sleep 5$ i $rm /mnt/data/rockrobo/rrlog/*REL -R > /dev/null$' /usr/bin/logrotate.sh
+sed -i 's$sleep 5$ i $rm /mnt/data/rockrobo/rrlog/*.gz > /dev/null$' /usr/bin/logrotate.sh
+sed -i 's$sleep 5$sleep 60$gI' /usr/bin/logrotate.sh
 
 service logrotate restart
 
