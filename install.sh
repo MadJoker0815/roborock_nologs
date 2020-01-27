@@ -33,7 +33,7 @@ fstrim -v /mnt/reserve
 fstrim -v /mnt/default
 
 #### ---- create new logging folder from tmpfs and link logs to /dev/null ---- ####
-mount -t tmpfs -o size=5m ext4 /mnt/data/rockrobo/rrlog
+mountpoint -q /mnt/data/rockrobo/rrlog || mount -t tmpfs -o size=5m ext4 /mnt/data/rockrobo/rrlog
 ln -s /dev/null /mnt/data/rockrobo/rrlog/watchdog.log
 ln -s /dev/null /mnt/data/rockrobo/rrlog/rrlog.log
 ln -s /dev/null /mnt/data/rockrobo/rrlog/miio.log
