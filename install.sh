@@ -141,7 +141,6 @@ cp /usr/bin/logrotate.sh /usr/bin/logrotate.sh.old
 sed -i '/sleep 5/ i #### ---- remove leftover logs in tmpfs /dev/shm and set logrotate to not as aggressive' /usr/bin/logrotate.sh 
 sed -i '/sleep 5/ i rm /dev/shm/*.old > /dev/null' /usr/bin/logrotate.sh
 sed -i '/sleep 5/ i rm /mnt/data/rockrobo/rrlog/*REL -R > /dev/null' /usr/bin/logrotate.sh
-sed -i '/sleep 5/ i rm /mnt/data/rockrobo/rrlog/*REL -R > /dev/null' /usr/bin/logrotate.sh
 sed -i '/sleep 5/ i rm /mnt/data/rockrobo/rrlog/*.gz > /dev/null' /usr/bin/logrotate.sh
 sed -i 's/sleep 5/sleep 60/gI' /usr/bin/logrotate.sh
 
