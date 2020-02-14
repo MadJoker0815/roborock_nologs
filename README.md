@@ -15,5 +15,5 @@ Also you should stop rrwatchdoge before editing the ProcessList.conf or ProcessL
 
 
 For easy installation I added the "install.sh" script. This will make the modifications if needed.
-Just copy the install.sh anywhwere on your robot and run it wit "sh install.sh".
+Just copy the install.sh anywhere on your robot and run it with "sh install.sh".
 Remember to check your regular reboot time and adjust the times in /etc/crontab after the executuion.
