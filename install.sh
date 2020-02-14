@@ -39,7 +39,7 @@ ln -s /dev/null /mnt/data/rockrobo/rrlog/rrlog.log
 ln -s /dev/null /mnt/data/rockrobo/rrlog/miio.log
 
 #### ---- remove existing .log and .old files ---- ####
-rm /dev/shm/*.old
+rm /dev/shm/*.old -f
 
 #### ---- check if reboot/remount has occured to reset the symlinks for log files ---- ####
 if [ ! -f "/dev/shm/check" ]; then
@@ -69,7 +69,7 @@ ln -s /dev/null /mnt/data/rockrobo/rrlog/rrlog.log
 ln -s /dev/null /mnt/data/rockrobo/rrlog/miio.log
 
 #### ---- remove existing .log and .old files ---- ####
-rm /dev/shm/*.old
+rm /dev/shm/*.old -f
 
 #### ---- check if reboot/remount has occured to reset the symlinks for log files ---- ####
 if [ ! -f "/dev/shm/check" ]; then
