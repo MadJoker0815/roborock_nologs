@@ -18,4 +18,4 @@ For easy installation I added the "install.sh" script. This will make the modifi
 Just copy the install.sh anywhere on your robot and run it with "sh install.sh".
 Remember to check your regular reboot time and adjust the times in /etc/crontab after the executuion.
 
-This script only runs on firmwares Gen2 < 2xxx. Please do not use it if you are running higher firmware versions.
+This script only runs on all Gen1 firmwares and Gen2 firmwares < 2xxx. Please do not use it if you are running higher firmware versions then Gen2 1xxx.
