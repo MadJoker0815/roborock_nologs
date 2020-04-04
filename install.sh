@@ -42,20 +42,7 @@ ln -s /dev/null /mnt/data/rockrobo/rrlog/miio.log
 rm /dev/shm/*.old -f
 
 #### ---- check if reboot/remount has occured to reset the symlinks for log files ---- ####
-if [ ! -f "/dev/shm/check" ]; then
-        rm /dev/shm/*.log
-        ln -s /dev/null /dev/shm/APP_PROXY_normal.log
-        ln -s /dev/null /dev/shm/NAV_TRAP_normal.log
-        ln -s /dev/null /dev/shm/NAV_binId5.log
-        ln -s /dev/null /dev/shm/NAV_binId6.log
-        ln -s /dev/null /dev/shm/PLAYER_SERVER_normal.log
-        ln -s /dev/null /dev/shm/PLAYER_fprintf.log
-        ln -s /dev/null /dev/shm/PLAYER_normal.log
-        ln -s /dev/null /dev/shm/PLAYER_SERVER_fprintf.log
-        ln -s /dev/null /dev/shm/SLAM_fprintf.log
-        ln -s /dev/null /dev/shm/SLAM_normal.log
-        echo . > /dev/shm/check
-fi' > /root/check_all
+        rm /dev/shm/*.log' > /root/check_all
 
 echo '#!/bin/bash
 #### ---- stopping rrwatchdoge after startup ---- ####
@@ -72,20 +59,7 @@ ln -s /dev/null /mnt/data/rockrobo/rrlog/miio.log
 rm /dev/shm/*.old -f
 
 #### ---- check if reboot/remount has occured to reset the symlinks for log files ---- ####
-if [ ! -f "/dev/shm/check" ]; then
         rm /dev/shm/*.log
-        ln -s /dev/null /dev/shm/APP_PROXY_normal.log
-        ln -s /dev/null /dev/shm/NAV_TRAP_normal.log
-        ln -s /dev/null /dev/shm/NAV_binId5.log
-        ln -s /dev/null /dev/shm/NAV_binId6.log
-        ln -s /dev/null /dev/shm/PLAYER_SERVER_normal.log
-        ln -s /dev/null /dev/shm/PLAYER_fprintf.log
-        ln -s /dev/null /dev/shm/PLAYER_normal.log
-        ln -s /dev/null /dev/shm/PLAYER_SERVER_fprintf.log
-        ln -s /dev/null /dev/shm/SLAM_fprintf.log
-        ln -s /dev/null /dev/shm/SLAM_normal.log
-        echo . > /dev/shm/check
-fi
 
 #### ---- finally start rrwatchdoge ---- ####
 service rrwatchdoge start' > /root/check_reboot
